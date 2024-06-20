@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"ios":{"default":{"projectId":"mongomate","appId":"1:1054562391414:ios:85f68d80a6559a4d989657","uploadDebugSymbols":true,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"mongomate","configurations":{"ios":"1:1054562391414:ios:85f68d80a6559a4d989657"}}}}}}

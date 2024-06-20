@@ -1,0 +1,34 @@
+name: mongo_mate
+description: "A new Flutter project."
+publish_to: "none"
+version: 1.0.0
+
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.8
+  flutter:
+    sdk: flutter
+  flutter_secure_storage: ^9.2.2
+  mongo_dart: ^0.10.2
+  fluttertoast: ^8.2.6
+  url_launcher: ^6.2.6
+  infinite_scroll_pagination: ^4.0.0
+  decimal: ^2.3.3
+  rational: ^2.2.3
+  fixnum: ^1.1.0
+  uuid: ^4.4.0
+  flutter_highlight: ^0.7.0
+  google_mobile_ads: ^5.1.0
+  firebase_core: ^3.0.0
+  firebase_crashlytics: ^4.0.0
+  local_auth: ^2.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
