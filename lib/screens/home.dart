@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(mode == "add" ? 'Add Connection' : 'Edit Connection',
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.headlineMedium),
                     SizedBox(height: 10.0),
                     TextField(
                       controller: _name,
@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text('MonMate'),
-                        const Text('Version 1.0.0'),
+                        const Text('Version 1.0.1'),
                         const Text('© 2024'),
                         const SizedBox(height: 10.0),
                         IconButton(
@@ -351,36 +351,38 @@ class _HomePageState extends State<HomePage> {
                 Text('Add your first MongoDB deployment'),
               ],
             ))
-          : Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ReorderableListView(
-                onReorder: reorderHandler,
-                children: List<Widget>.generate(
-                  connections.length + 1, // Add 1 for the ad
-                  (index) {
-                    if (index == 0) {
-                      // Insert your ad widget here
-                      // return NativeAdWidget(
-                      //     key:
-                      //         UniqueKey()); // Replace AdWidget with your actual ad widget
-                      return AdBanner(
-                        key: UniqueKey(),
-                      );
-                    } else {
-                      // Subtract 1 from index if ad is inserted before index 1
-                      var adjustedIndex = index > 0 ? index - 1 : index;
-                      return SingleConnection(
-                        adjustedIndex,
-                        connections[adjustedIndex],
-                        connections.any((q) => q.isSelected),
-                        (i, t) => select(i, t),
-                        key: UniqueKey(),
-                      );
-                    }
-                  },
+          : isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: ReorderableListView(
+                    onReorder: reorderHandler,
+                    children: List<Widget>.generate(
+                      connections.length + 1, // Add 1 for the ad
+                      (index) {
+                        if (index == 0) {
+                          // Insert your ad widget here
+                          // return NativeAdWidget(
+                          //     key:
+                          //         UniqueKey()); // Replace AdWidget with your actual ad widget
+                          return AdBanner(
+                            key: UniqueKey(),
+                          );
+                        } else {
+                          // Subtract 1 from index if ad is inserted before index 1
+                          var adjustedIndex = index > 0 ? index - 1 : index;
+                          return SingleConnection(
+                            adjustedIndex,
+                            connections[adjustedIndex],
+                            connections.any((q) => q.isSelected),
+                            (i, t) => select(i, t),
+                            key: UniqueKey(),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            ),
     );
   }
 }

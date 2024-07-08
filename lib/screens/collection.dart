@@ -94,7 +94,7 @@ class _CollectionState extends State<CollectionScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('Create Collection',
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.headlineMedium),
                     SizedBox(height: 10.0),
                     TextField(
                       controller: _name,
