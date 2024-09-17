@@ -98,9 +98,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void select(int index, SelectType type) {
-    if (isLoading) {
-      return;
-    }
+    // if (isLoading) {
+    //   return;
+    // }
     if (type == SelectType.tap) {
       if (connections.any((element) => element.isSelected)) {
         setState(() {
@@ -298,9 +298,21 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: IconButton(
-            onPressed: () => manageAbout(context),
-            icon: const Icon(CupertinoIcons.cube_box_fill),
+          title: Row(
+            children: [
+              IconButton(
+                onPressed: () => manageAbout(context),
+                icon: const Icon(CupertinoIcons.cube_box_fill),
+              ),
+              Visibility(
+                visible: isLoading,
+                child: Center(
+                    child: SizedBox(
+                        child: CircularProgressIndicator(),
+                        width: 25,
+                        height: 25)),
+              ),
+            ],
           ),
           actions: [
             (selectedCount == 0)
@@ -351,38 +363,40 @@ class _HomePageState extends State<HomePage> {
                 Text('Add your first MongoDB deployment'),
               ],
             ))
-          : isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: ReorderableListView(
-                    onReorder: reorderHandler,
-                    children: List<Widget>.generate(
-                      connections.length + 1, // Add 1 for the ad
-                      (index) {
-                        if (index == 0) {
-                          // Insert your ad widget here
-                          // return NativeAdWidget(
-                          //     key:
-                          //         UniqueKey()); // Replace AdWidget with your actual ad widget
-                          return AdBanner(
-                            key: UniqueKey(),
-                          );
-                        } else {
-                          // Subtract 1 from index if ad is inserted before index 1
-                          var adjustedIndex = index > 0 ? index - 1 : index;
-                          return SingleConnection(
-                            adjustedIndex,
-                            connections[adjustedIndex],
-                            connections.any((q) => q.isSelected),
-                            (i, t) => select(i, t),
-                            key: UniqueKey(),
-                          );
-                        }
-                      },
-                    ),
-                  ),
+          :
+          // isLoading
+          //     ? const Center(child: CircularProgressIndicator())
+          //     :
+          Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: ReorderableListView(
+                onReorder: reorderHandler,
+                children: List<Widget>.generate(
+                  connections.length + 1, // Add 1 for the ad
+                  (index) {
+                    if (index == 0) {
+                      // Insert your ad widget here
+                      // return NativeAdWidget(
+                      //     key:
+                      //         UniqueKey()); // Replace AdWidget with your actual ad widget
+                      return AdBanner(
+                        key: UniqueKey(),
+                      );
+                    } else {
+                      // Subtract 1 from index if ad is inserted before index 1
+                      var adjustedIndex = index > 0 ? index - 1 : index;
+                      return SingleConnection(
+                        adjustedIndex,
+                        connections[adjustedIndex],
+                        connections.any((q) => q.isSelected),
+                        (i, t) => select(i, t),
+                        key: UniqueKey(),
+                      );
+                    }
+                  },
                 ),
+              ),
+            ),
     );
   }
 }
