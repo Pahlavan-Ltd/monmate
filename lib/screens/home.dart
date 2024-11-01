@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mongo_mate/helpers/mongo.dart';
 import 'package:mongo_mate/helpers/storage.dart';
 import 'package:mongo_mate/helpers/toast.dart';
@@ -167,14 +168,20 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
+            // Track whether fields are empty
+            bool isNameEmpty = _name.text.isEmpty;
+            bool isUriEmpty = _uri.text.isEmpty;
+
             return SafeArea(
               child: Container(
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(mode == "add" ? 'Add Connection' : 'Edit Connection',
-                        style: Theme.of(context).textTheme.headlineMedium),
+                    Text(
+                      mode == "add" ? 'Add Connection' : 'Edit Connection',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                     SizedBox(height: 10.0),
                     TextField(
                       controller: _name,
@@ -182,6 +189,10 @@ class _HomePageState extends State<HomePage> {
                           labelText: "Label",
                           hintText: "e.g MonMate Instance 1"),
                       textInputAction: TextInputAction.next,
+                      onChanged: (value) {
+                        // Update the state when text changes
+                        setState(() {});
+                      },
                     ),
                     SizedBox(height: 10.0),
                     TextField(
@@ -190,6 +201,10 @@ class _HomePageState extends State<HomePage> {
                           labelText: "URI",
                           helperText: "e.g mongodb+srv://user:pass@url/dbname"),
                       textInputAction: TextInputAction.done,
+                      onChanged: (value) {
+                        // Update the state when text changes
+                        setState(() {});
+                      },
                     ),
                     SizedBox(height: 10.0),
                     Row(
@@ -201,16 +216,19 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SizedBox(width: 10.0),
                         ElevatedButton(
-                          onPressed: () {
-                            if (mode == "add") {
-                              add(_name.value.text, _uri.value.text);
-                            } else {
-                              update(index, _name.value.text, _uri.value.text);
-                            }
-                            Navigator.pop(context);
-                            _uri.clear();
-                            _name.clear();
-                          },
+                          // Disable button if either field is empty
+                          onPressed: isNameEmpty || isUriEmpty
+                              ? null
+                              : () {
+                                  if (mode == "add") {
+                                    add(_name.text, _uri.text);
+                                  } else {
+                                    update(index, _name.text, _uri.text);
+                                  }
+                                  Navigator.pop(context);
+                                  _uri.clear();
+                                  _name.clear();
+                                },
                           child: Text(mode == "add" ? 'Add' : 'Edit'),
                         ),
                       ],
@@ -251,15 +269,30 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text('MonMate'),
-                        const Text('Version 1.0.1'),
+                        const Text('Version 1.0.2'),
                         const Text('© 2024'),
                         const SizedBox(height: 10.0),
-                        IconButton(
-                            onPressed: () {
-                              openUrl(
-                                  Uri.parse('https://pahlavan.co.uk/monmate'));
-                            },
-                            icon: Icon(CupertinoIcons.globe))
+                        Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  openUrl(Uri.parse(
+                                      'https://pahlavan.co.uk/monmate'));
+                                },
+                                icon: const Icon(CupertinoIcons.globe)),
+                            IconButton(
+                                onPressed: () {
+                                  ConsentForm.showPrivacyOptionsForm(
+                                      (formError) {
+                                    if (formError != null) {
+                                      debugPrint(
+                                          "${formError.errorCode}: ${formError.message}");
+                                    }
+                                  });
+                                },
+                                icon: const Icon(CupertinoIcons.lock_circle)),
+                          ],
+                        )
                       ],
                     ),
                   ],

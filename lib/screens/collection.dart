@@ -87,6 +87,9 @@ class _CollectionState extends State<CollectionScreen> {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
+            // Track whether the field is empty
+            bool isNameEmpty = _name.text.isEmpty;
+
             return SafeArea(
               child: Container(
                 padding: EdgeInsets.all(16.0),
@@ -100,6 +103,10 @@ class _CollectionState extends State<CollectionScreen> {
                       controller: _name,
                       decoration: InputDecoration(labelText: "Name"),
                       textInputAction: TextInputAction.done,
+                      onChanged: (value) {
+                        // Update the state when text changes
+                        setState(() {});
+                      },
                     ),
                     SizedBox(height: 10.0),
                     Row(
@@ -111,11 +118,14 @@ class _CollectionState extends State<CollectionScreen> {
                         ),
                         SizedBox(width: 10.0),
                         ElevatedButton(
-                          onPressed: () {
-                            create(_name.value.text);
-                            Navigator.pop(context);
-                            _name.clear();
-                          },
+                          // Disable button if name is empty
+                          onPressed: isNameEmpty
+                              ? null
+                              : () {
+                                  create(_name.text);
+                                  Navigator.pop(context);
+                                  _name.clear();
+                                },
                           child: Text('Create'),
                         ),
                       ],
