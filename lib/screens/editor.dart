@@ -11,8 +11,8 @@ class EditorScreen extends StatefulWidget {
   final String collectionName;
   final dynamic itemId;
   final dynamic item;
-  EditorScreen({Key? key, required this.collectionName, this.itemId, this.item})
-      : super(key: key);
+  const EditorScreen(
+      {super.key, required this.collectionName, this.itemId, this.item});
 
   @override
   _EditState createState() => _EditState();
@@ -126,7 +126,7 @@ class _EditState extends State<EditorScreen> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.only(bottom: 10),
         child: SizedBox(
           // height: netHeight,
           child: CupertinoScrollbar(

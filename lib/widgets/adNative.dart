@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdNative extends StatefulWidget {
-  const AdNative({Key? key}) : super(key: key);
+  const AdNative({super.key});
 
   @override
   _AdNativeState createState() => _AdNativeState();

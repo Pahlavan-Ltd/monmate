@@ -270,9 +270,10 @@ class _DocumentState extends State<DocumentScreen> {
                   : const Icon(CupertinoIcons.eye)),
           IconButton(
               onPressed: sortHelper,
-              icon: Icon(CupertinoIcons.line_horizontal_3_decrease_circle)),
+              icon:
+                  const Icon(CupertinoIcons.line_horizontal_3_decrease_circle)),
           IconButton(
-              onPressed: searchHelper, icon: Icon(CupertinoIcons.search)),
+              onPressed: searchHelper, icon: const Icon(CupertinoIcons.search)),
           isAnySelected()
               ? IconButton(
                   onPressed: deleteHandler,

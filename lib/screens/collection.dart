@@ -12,7 +12,7 @@ import 'package:mongo_mate/widgets/singleCollection.dart';
 
 class CollectionScreen extends StatefulWidget {
   final String name;
-  const CollectionScreen({Key? key, required this.name}) : super(key: key);
+  const CollectionScreen({super.key, required this.name});
 
   @override
   _CollectionState createState() => _CollectionState();
@@ -92,31 +92,31 @@ class _CollectionState extends State<CollectionScreen> {
 
             return SafeArea(
               child: Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('Create Collection',
                         style: Theme.of(context).textTheme.headlineMedium),
-                    SizedBox(height: 10.0),
+                    const SizedBox(height: 10.0),
                     TextField(
                       controller: _name,
-                      decoration: InputDecoration(labelText: "Name"),
+                      decoration: const InputDecoration(labelText: "Name"),
                       textInputAction: TextInputAction.done,
                       onChanged: (value) {
                         // Update the state when text changes
                         setState(() {});
                       },
                     ),
-                    SizedBox(height: 10.0),
+                    const SizedBox(height: 10.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text('Cancel'),
+                          child: const Text('Cancel'),
                         ),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
                         ElevatedButton(
                           // Disable button if name is empty
                           onPressed: isNameEmpty
@@ -126,7 +126,7 @@ class _CollectionState extends State<CollectionScreen> {
                                   Navigator.pop(context);
                                   _name.clear();
                                 },
-                          child: Text('Create'),
+                          child: const Text('Create'),
                         ),
                       ],
                     ),

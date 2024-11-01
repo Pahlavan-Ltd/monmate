@@ -20,7 +20,7 @@ class ToastHelper {
               topRight: Radius.circular(15),
               bottomLeft: Radius.circular(15),
               bottomRight: Radius.circular(15))),
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       backgroundColor: Colors.grey[500],
       content:
           Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -47,7 +47,7 @@ class ToastHelper {
                   Clipboard.setData(ClipboardData(text: message));
                 },
                 tooltip: "Copy",
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.doc_on_clipboard,
                   color: Colors.white,
                 )),

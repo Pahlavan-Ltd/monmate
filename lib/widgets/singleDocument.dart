@@ -13,8 +13,7 @@ class ExpandableColumn extends StatefulWidget {
 
   const ExpandableColumn(
       this.field, this.expandableType, this.padding, this.values,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   State<StatefulWidget> createState() => ExpandableColumnState();
@@ -71,8 +70,7 @@ class SingleDocument extends StatefulWidget {
 
   const SingleDocument(this.index, this.selectable, this.hasAnySelected,
       this.onClick, this.showDetails, this.showDetailsHandler,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   State<SingleDocument> createState() => _SingleDocumentState();

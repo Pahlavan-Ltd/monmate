@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
 
             return SafeArea(
               child: Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -182,10 +182,10 @@ class _HomePageState extends State<HomePage> {
                       mode == "add" ? 'Add Connection' : 'Edit Connection',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    SizedBox(height: 10.0),
+                    const SizedBox(height: 10.0),
                     TextField(
                       controller: _name,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: "Label",
                           hintText: "e.g MonMate Instance 1"),
                       textInputAction: TextInputAction.next,
@@ -194,10 +194,10 @@ class _HomePageState extends State<HomePage> {
                         setState(() {});
                       },
                     ),
-                    SizedBox(height: 10.0),
+                    const SizedBox(height: 10.0),
                     TextField(
                       controller: _uri,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: "URI",
                           helperText: "e.g mongodb+srv://user:pass@url/dbname"),
                       textInputAction: TextInputAction.done,
@@ -206,15 +206,15 @@ class _HomePageState extends State<HomePage> {
                         setState(() {});
                       },
                     ),
-                    SizedBox(height: 10.0),
+                    const SizedBox(height: 10.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text('Cancel'),
+                          child: const Text('Cancel'),
                         ),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
                         ElevatedButton(
                           // Disable button if either field is empty
                           onPressed: isNameEmpty || isUriEmpty
@@ -261,7 +261,7 @@ class _HomePageState extends State<HomePage> {
           builder: (context, setState) {
             return SafeArea(
               child: Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -339,11 +339,11 @@ class _HomePageState extends State<HomePage> {
               ),
               Visibility(
                 visible: isLoading,
-                child: Center(
+                child: const Center(
                     child: SizedBox(
-                        child: CircularProgressIndicator(),
                         width: 25,
-                        height: 25)),
+                        height: 25,
+                        child: CircularProgressIndicator())),
               ),
             ],
           ),

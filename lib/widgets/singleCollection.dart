@@ -71,7 +71,7 @@ class SingleCollection extends StatelessWidget {
       subtitle: Row(
         children: [
           Text(getDocumentText()),
-          Icon(
+          const Icon(
             CupertinoIcons.doc_fill,
             size: 11,
           )

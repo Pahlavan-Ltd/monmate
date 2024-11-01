@@ -11,8 +11,7 @@ class SingleConnection extends StatelessWidget {
 
   const SingleConnection(
       this.index, this.selectable, this.isAnySelected, this.onClick,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
