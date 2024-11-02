@@ -227,6 +227,8 @@
 				<string>3qcr597p9d.skadnetwork</string>
 			</dict>
 		</array>
+		<key>NSUserTrackingUsageDescription</key>
+		<string>Help us personalize your experience!</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
 		<key>UILaunchStoryboardName</key>
