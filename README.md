@@ -1,6 +1,6 @@
 # MonMate
 
-MonMate is a mobile application developed using Flutter, available on both the App Store.
+MonMate is a mobile application developed using Flutter, available on the App Store.
 
 ## App Store Link
 
