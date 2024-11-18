@@ -272,27 +272,29 @@ class _HomePageState extends State<HomePage> {
                         const Text('Version 1.0.2'),
                         const Text('© 2024'),
                         const SizedBox(height: 10.0),
+                        const Text('Licensed under the GPL-3.0 License'),
                         Row(
                           children: [
                             IconButton(
-                                onPressed: () {
-                                  openUrl(Uri.parse(
-                                      'https://pahlavan.co.uk/monmate'));
-                                },
-                                icon: const Icon(CupertinoIcons.globe)),
+                              onPressed: () {
+                                openUrl(Uri.parse(
+                                    'https://pahlavan.co.uk/monmate'));
+                              },
+                              icon: const Icon(CupertinoIcons.globe),
+                            ),
                             IconButton(
-                                onPressed: () {
-                                  ConsentForm.showPrivacyOptionsForm(
-                                      (formError) {
-                                    if (formError != null) {
-                                      debugPrint(
-                                          "${formError.errorCode}: ${formError.message}");
-                                    }
-                                  });
-                                },
-                                icon: const Icon(CupertinoIcons.lock_circle)),
+                              onPressed: () {
+                                ConsentForm.showPrivacyOptionsForm((formError) {
+                                  if (formError != null) {
+                                    debugPrint(
+                                        "${formError.errorCode}: ${formError.message}");
+                                  }
+                                });
+                              },
+                              icon: const Icon(CupertinoIcons.lock_circle),
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ],
