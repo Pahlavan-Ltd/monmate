@@ -205,28 +205,31 @@ class _IntroPageState extends State<IntroPage> {
   }
 
   Widget _buildPrivacyPage() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.privacy_tip, size: 100, color: Colors.orangeAccent),
-          const SizedBox(height: 24),
-          const Text(
-            "Privacy Settings",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            "To keep this app free, we'd like your permission to track your activity for personalized ads.",
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: _requestATT,
-            child: const Text("Continue"),
-          ),
-        ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.privacy_tip,
+                size: 100, color: Colors.orangeAccent),
+            const SizedBox(height: 24),
+            const Text(
+              "Privacy Settings",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "To keep this app free, we'd like your permission to track your activity for personalized ads.",
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: _requestATT,
+              child: const Text("Continue"),
+            ),
+          ],
+        ),
       ),
     );
   }
