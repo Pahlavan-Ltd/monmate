@@ -269,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text('MonMate'),
-                        const Text('Version 1.0.2'),
+                        const Text('Version 1.0.3'),
                         const Text('© 2024'),
                         const SizedBox(height: 10.0),
                         const Text('Licensed under the GPL-3.0 License'),
@@ -292,6 +292,16 @@ class _HomePageState extends State<HomePage> {
                                 });
                               },
                               icon: const Icon(CupertinoIcons.lock_circle),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                openUrl(Uri.parse(
+                                    'https://github.com/Pahlavan-Ltd/monmate'));
+                              },
+                              icon: Text(
+                                "{ }",
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                           ],
                         ),
