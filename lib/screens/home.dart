@@ -254,61 +254,132 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> manageAbout(BuildContext context) async {
     showModalBottomSheet<void>(
-      isScrollControlled: true,
       context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return SafeArea(
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('MonMate'),
-                        const Text('Version 1.0.3'),
-                        const Text('© 2024'),
-                        const SizedBox(height: 10.0),
-                        const Text('Licensed under the GPL-3.0 License'),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                openUrl(Uri.parse(
-                                    'https://pahlavan.co.uk/monmate'));
-                              },
-                              icon: const Icon(CupertinoIcons.globe),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                ConsentForm.showPrivacyOptionsForm((formError) {
-                                  if (formError != null) {
-                                    debugPrint(
-                                        "${formError.errorCode}: ${formError.message}");
-                                  }
-                                });
-                              },
-                              icon: const Icon(CupertinoIcons.lock_circle),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                openUrl(Uri.parse(
-                                    'https://github.com/Pahlavan-Ltd/monmate'));
-                              },
-                              icon: Text(
-                                "{ }",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+        return DraggableScrollableSheet(
+          initialChildSize: 0.7,
+          minChildSize: 0.5,
+          maxChildSize: 0.9,
+          expand: false,
+          builder: (context, scrollController) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(20),
                 ),
+              ),
+              child: ListView(
+                controller: scrollController,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'About Monmate',
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'Version 1.0.4',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Text(
+                    '© 2024',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'MonMate is your ultimate companion for managing MongoDB databases with ease and efficiency. Whether you\'re a seasoned developer or just getting started, MonMate simplifies your workflow, allowing you to focus on what truly matters—your data.',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+
+                  const SizedBox(height: 16),
+                  ListTile(
+                    leading: const Icon(CupertinoIcons.globe),
+                    title: const Text('MonMate Website'),
+                    // subtitle: const Text('pahlavan.co.uk/monmate'),
+                    onTap: () =>
+                        openUrl(Uri.parse('https://pahlavan.co.uk/monmate')),
+                  ),
+                  ListTile(
+                    leading: const Icon(CupertinoIcons.shield_fill),
+                    title: const Text('Privacy Policy'),
+                    // subtitle: const Text('pahlavan.co.uk/monmate'),
+                    onTap: () => openUrl(
+                        Uri.parse('https://pahlavan.co.uk/monmate/privacy')),
+                  ),
+                  // ListTile(
+                  //   leading: const Icon(CupertinoIcons.lock_fill),
+                  //   title: const Text('Privacy Options'),
+                  //   onTap: () {
+                  //     ConsentForm.showPrivacyOptionsForm((formError) {
+                  //       if (formError != null) {
+                  //         debugPrint(
+                  //             "${formError.errorCode}: ${formError.message}");
+                  //       }
+                  //     });
+                  //   },
+                  // ),
+                  ExpansionTile(
+                    title: const Text('Licensing'),
+                    children: [
+                      ListTile(
+                        title: const Text('GNU General Public License v3.0'),
+                        subtitle: const Text('GPL-3.0'),
+                        trailing: TextButton(
+                          onPressed: () => openUrl(Uri.parse(
+                              'https://www.gnu.org/licenses/gpl-3.0.en.html')),
+                          child: const Text('View License'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: const Text('Source Code'),
+                    children: [
+                      ListTile(
+                        title: const Text(
+                            'MonMate is an open-source project. You are free to use, modify, and distribute the app under the terms of this license.'),
+                        subtitle: const Text('Open-source software'),
+                        trailing: TextButton(
+                          onPressed: () => openUrl(Uri.parse(
+                              'https://github.com/Pahlavan-Ltd/monmate')),
+                          child: const Text('Github'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: const Text('Credits'),
+                    children: [
+                      ListTile(
+                        title: const Text('Inspired by Mondroid'),
+                        subtitle: const Text('github.com/vedfi/mondroid'),
+                        trailing: TextButton(
+                          onPressed: () => openUrl(
+                              Uri.parse('https://github.com/vedfi/mondroid')),
+                          child: const Text('Github'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             );
           },
