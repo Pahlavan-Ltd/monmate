@@ -9,6 +9,14 @@ class SingleConnection extends StatelessWidget {
   final bool isAnySelected;
   final Selectable<Connection> selectable;
 
+  String _obfuscateUri(String uri) {
+    final match = RegExp(r'(://[^:]+:)([^@]+)(@)').firstMatch(uri);
+    if (match == null) return uri;
+
+    return uri.replaceRange(match.start + match.group(1)!.length,
+        match.end - match.group(3)!.length, '*' * match.group(2)!.length);
+  }
+
   const SingleConnection(
       this.index, this.selectable, this.isAnySelected, this.onClick,
       {super.key});
@@ -51,7 +59,7 @@ class SingleConnection extends StatelessWidget {
                     maxLines: 1))
           ],
         ),
-        subtitle: Text(selectable.item.uri.replaceAll("", "\u{200B}"),
+        subtitle: Text(_obfuscateUri(selectable.item.uri),
             overflow: TextOverflow.ellipsis, softWrap: false, maxLines: 1),
         isThreeLine: false,
         trailing: selectable.isSelected
